@@ -4,16 +4,35 @@
     <i class="el-icon-share"></i>
     <i class="el-icon-delete"></i>
     <el-button type="primary" icon="el-icon-search">搜索</el-button>
+    {{msg}}
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'HelloWorld',
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: this.$store.state.test.data[0]
     };
+  },
+  mounted() {
+    console.log(' this.$store.state.test.data[0]', this.$get('/',{}));
+    console.log(' this.$store.state.test.data[0]', this.$post('/api/post',{}));
+    console.log(' this.$store.state.test.data[0]', this);
+    setTimeout(() => {
+      // this.$store.dispatch('testFn', ['aaa']);
+      this.testFn(['aaa'])
+      this.msg = this.$store.state.test.data[0];
+      console.log('mounted -> this.testFn()', this.testFn(['aaa']));
+    }, 3000);
+  },
+  computed: {
+    // ...mapGetters(['testFn'])
+  },
+  methods: {
+    ...mapActions(['testFn'])
   }
 };
 </script>

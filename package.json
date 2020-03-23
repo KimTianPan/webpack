@@ -5,11 +5,13 @@
   "author": "Kim.Tian <Kim.Tian@movit-tech.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "concurrently": "concurrently",
+    "dev": "concurrently \"webpack-dev-server --inline --progress --config build/webpack.dev.conf.js\"",
     "start": "npm run dev",
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
@@ -25,9 +27,11 @@
     "babel-preset-env": "^1.3.2",
     "babel-preset-stage-2": "^6.22.0",
     "chalk": "^2.0.1",
+    "concurrently": "^5.1.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
     "element-ui": "^2.13.0",
+    "es6-promise": "^4.2.8",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
@@ -47,6 +51,7 @@
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
+    "vuex": "^3.1.3",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
