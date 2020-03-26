@@ -6,65 +6,66 @@ axios.defaults.headers.post['Content-Type'] = 'Content-Type:application/json;cha
 axios.defaults.baseURL = ''; //配置接口地址
 
 //POST传参序列化(添加请求拦截器)
-axios.interceptors.request.use(
-  config => {
-    //在发送请求之前做某件事
-    return config;
-  },
-  error => {
-    console.log('错误的传参');
-    return Promise.reject(error);
-  }
-);
+// axios.interceptors.request.use(
+//   config => {
+//     //在发送请求之前做某件事
+//     return config;
+//   },
+//   error => {
+//     console.log('错误的传参');
+//     return Promise.reject(error);
+//   }
+// );
 
 //返回状态判断(添加响应拦截器)
-axios.interceptors.response.use(
-  res => {
-    //对响应数据做些事
-    if (!res.data.success) {
-      return Promise.resolve(res);
-    }
-    return res;
-  },
-  error => {
-    console.log('网络异常');
-    return Promise.reject(error);
-  }
-);
-    //返回一个Promise(发送post请求)
-    Vue.prototype.$post = function(url, params) {
-      return new Promise((resolve, reject) => {
-        axios
-          .post(url, params)
-          .then(
-            response => {
-              resolve(response);
-            },
-            err => {
-              reject(err);
-            }
-          )
-          .catch(error => {
-            reject(error);
-          });
+// axios.interceptors.response.use(
+//   res => {
+//     //对响应数据做些事
+//     if (!res.data.success) {
+//       return Promise.resolve(res);
+//     }
+//     return res;
+//   },
+//   error => {
+//     console.log('网络异常');
+//     return Promise.reject(error);
+//   }
+// );
+//返回一个Promise(发送post请求)
+Vue.prototype.$post = function(url, params) {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(url, params)
+      .then(
+        response => {
+          resolve(response);
+          console.log("Vue.prototype.$post -> response", response)
+        },
+        err => {
+          reject(err);
+          console.log("Vue.prototype.$post -> err", err)
+        }
+      )
+      .catch(error => {
+        reject(error);
       });
-    };
-    Vue.prototype.$get =  function(url, param) {
-      return new Promise((resolve, reject) => {
-        axios
-          .get(url, { params: param })
-          .then(
-            response => {
-              resolve(response);
-            },
-            err => {
-              reject(err);
-            }
-          )
-          .catch(error => {
-            reject(error);
-          });
+  });
+};
+Vue.prototype.$get = function(url, param) {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(url, { params: param })
+      .then(
+        response => {
+          resolve(response);
+        },
+        err => {
+          reject(err);
+        }
+      )
+      .catch(error => {
+        reject(error);
       });
-    }
+  });
+};
 ////返回一个Promise(发送get请求)
-

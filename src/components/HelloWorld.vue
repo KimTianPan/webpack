@@ -18,7 +18,7 @@ export default {
     };
   },
   mounted() {
-    console.log(' this.$store.state.test.data[0]', this.$get('/',{}));
+    console.log(' this.$store.state.test.data[0]', this.$get('/api/get',{}));
     console.log(' this.$store.state.test.data[0]', this.$post('/api/post',{}));
     console.log(' this.$store.state.test.data[0]', this);
     setTimeout(() => {

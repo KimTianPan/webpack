@@ -1,21 +1,23 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import Home from '@/components/Home'
-
-Vue.use(Router)
+import Vue from 'vue';
+import Router from 'vue-router';
+import LayoutMenu from '@/layout/Menu';
+import Resume from '@/page/Resume';
+import Work from '@/page/Work';
+import Skill from '@/page/Skill';
+import Project from '@/page/Project';
+Vue.use(Router);
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
-      path:'/home',
-      name: 'Home',
-      component: Home
+      component: LayoutMenu,
+      children: [
+        { path: 'resume', component: Resume },
+        { path: 'work', component: Work },
+        { path: 'project', component: Project },
+        { path: 'skill', component: Skill }
+      ]
     }
   ]
-})
+});
